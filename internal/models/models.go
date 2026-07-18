@@ -8,18 +8,18 @@ import (
 
 // Config represents the top-level mock server configuration.
 type Config struct {
-	Server   ServerConfig            `yaml:"server" json:"server"`
-	CORS     *CORSConfig             `yaml:"cors,omitempty" json:"cors,omitempty"`
-	Routes   []Route                 `yaml:"routes" json:"routes"`
-	Scenarios map[string][]Route     `yaml:"scenarios,omitempty" json:"scenarios,omitempty"`
+	Server    ServerConfig       `yaml:"server" json:"server"`
+	CORS      *CORSConfig        `yaml:"cors,omitempty" json:"cors,omitempty"`
+	Routes    []Route            `yaml:"routes" json:"routes"`
+	Scenarios map[string][]Route `yaml:"scenarios,omitempty" json:"scenarios,omitempty"`
 }
 
 // ServerConfig holds server startup options.
 type ServerConfig struct {
-	Port      int    `yaml:"port" json:"port"`
-	Host      string `yaml:"host" json:"host"`
-	TLS       *TLSConfig `yaml:"tls,omitempty" json:"tls,omitempty"`
-	LogLevel  string `yaml:"log_level" json:"log_level"`
+	Port     int        `yaml:"port" json:"port"`
+	Host     string     `yaml:"host" json:"host"`
+	TLS      *TLSConfig `yaml:"tls,omitempty" json:"tls,omitempty"`
+	LogLevel string     `yaml:"log_level" json:"log_level"`
 }
 
 // TLSConfig for HTTPS support.
@@ -40,22 +40,22 @@ type CORSConfig struct {
 
 // Route defines a mock endpoint with matching criteria and responses.
 type Route struct {
-	Name        string            `yaml:"name,omitempty" json:"name,omitempty"`
-	Method      string            `yaml:"method" json:"method"`
-	Path        string            `yaml:"path" json:"path"`
-	Query       map[string]string `yaml:"query,omitempty" json:"query,omitempty"`
-	Headers     map[string]string `yaml:"headers,omitempty" json:"headers,omitempty"`
-	Body        *BodyMatcher      `yaml:"body,omitempty" json:"body,omitempty"`
-	Responses   []Response        `yaml:"responses" json:"responses"`
-	Delay       *DelayConfig      `yaml:"delay,omitempty" json:"delay,omitempty"`
-	Tags        []string          `yaml:"tags,omitempty" json:"tags,omitempty"`
+	Name      string            `yaml:"name,omitempty" json:"name,omitempty"`
+	Method    string            `yaml:"method" json:"method"`
+	Path      string            `yaml:"path" json:"path"`
+	Query     map[string]string `yaml:"query,omitempty" json:"query,omitempty"`
+	Headers   map[string]string `yaml:"headers,omitempty" json:"headers,omitempty"`
+	Body      *BodyMatcher      `yaml:"body,omitempty" json:"body,omitempty"`
+	Responses []Response        `yaml:"responses" json:"responses"`
+	Delay     *DelayConfig      `yaml:"delay,omitempty" json:"delay,omitempty"`
+	Tags      []string          `yaml:"tags,omitempty" json:"tags,omitempty"`
 }
 
 // BodyMatcher matches request body content.
 type BodyMatcher struct {
-	JSONPath  string `yaml:"json_path,omitempty" json:"json_path,omitempty"`
-	Contains  string `yaml:"contains,omitempty" json:"contains,omitempty"`
-	Exact     string `yaml:"exact,omitempty" json:"exact,omitempty"`
+	JSONPath string `yaml:"json_path,omitempty" json:"json_path,omitempty"`
+	Contains string `yaml:"contains,omitempty" json:"contains,omitempty"`
+	Exact    string `yaml:"exact,omitempty" json:"exact,omitempty"`
 }
 
 // Response defines what to return when a route matches.
@@ -83,16 +83,16 @@ type MatchResult struct {
 
 // RequestLog captures incoming request details.
 type RequestLog struct {
-	Timestamp   time.Time         `json:"timestamp"`
-	Method      string            `json:"method"`
-	Path        string            `json:"path"`
-	RemoteAddr  string            `json:"remote_addr"`
-	StatusCode  int               `json:"status_code"`
-	Matched     bool              `json:"matched"`
-	RouteName   string            `json:"route_name,omitempty"`
-	Headers     map[string]string `json:"headers"`
-	Params      map[string]string `json:"params,omitempty"`
-	Duration    time.Duration     `json:"duration"`
+	Timestamp  time.Time         `json:"timestamp"`
+	Method     string            `json:"method"`
+	Path       string            `json:"path"`
+	RemoteAddr string            `json:"remote_addr"`
+	StatusCode int               `json:"status_code"`
+	Matched    bool              `json:"matched"`
+	RouteName  string            `json:"route_name,omitempty"`
+	Headers    map[string]string `json:"headers"`
+	Params     map[string]string `json:"params,omitempty"`
+	Duration   time.Duration     `json:"duration"`
 }
 
 // NewDefaultConfig returns a Config with sensible defaults.

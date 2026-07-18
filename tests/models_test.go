@@ -183,7 +183,7 @@ func TestDelayConfig(t *testing.T) {
 
 func TestBodyMatcher(t *testing.T) {
 	tests := []struct {
-		name   string
+		name    string
 		matcher models.BodyMatcher
 	}{
 		{"exact", models.BodyMatcher{Exact: `{"key":"value"}`}},
